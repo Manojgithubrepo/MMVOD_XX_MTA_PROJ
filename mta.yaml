@@ -1,0 +1,19 @@
+ID: MMVOD_XX_MTA_PROJ
+_schema-version: '2.1'
+version: 0.0.1
+
+modules:
+ - name: MMVOD_XX_DB
+   type: hdb
+   path: MMVOD_XX_DB
+   requires:
+    - name: hdi_MMVOD_XX_DB
+
+resources:
+ - name: hdi_MMVOD_XX_DB
+   parameters:
+      config:
+         schema: MMVOD_XX_SCH
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
