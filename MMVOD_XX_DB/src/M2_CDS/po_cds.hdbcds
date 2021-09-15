@@ -1,0 +1,58 @@
+context Purchase_CDS {
+    type BusinessKey : String(10);
+    type CurrencyT : String(5);
+    type AmountT : Decimal(15, 2);
+    type QuantityT : Decimal(13, 3);
+    type UnitT : String(3);
+    type StatusT : String(1);
+
+	type HistoryT {
+        CREATEDBY : BusinessKey;
+        CHANGEDBY : BusinessKey;
+
+    };
+
+    entity Headers {
+        key PURCHASEORDERID : Integer;
+            ITEMS           :  String(10);
+            HISTORY         : HistoryT;
+            NOTEID          : BusinessKey null;
+            PARTNER         : BusinessKey;
+            CURRENCY        : CurrencyT;
+            GROSSAMOUNT     : AmountT;
+            NETAMOUNT       : AmountT;
+            TAXAMOUNT       : AmountT;
+            LIFECYCLESTATUS : StatusT;
+            APPROVALSTATUS  : StatusT;
+            CONFIRMSTATUS   : StatusT;
+            ORDERINGSTATUS  : StatusT;
+            INVOICINGSTATUS : StatusT;
+    }
+
+    entity Items {
+        key POHeader     : association to Headers;
+        key PRODUCT      : BusinessKey;
+            NOTEID       : BusinessKey null;
+            CURRENCY     : CurrencyT;
+            GROSSAMOUNT  : AmountT;
+            NETAMOUNT    : AmountT;
+            TAXAMOUNT    : AmountT;
+            QUANTITY     : QuantityT;
+            QUANTITYUNIT : UnitT;
+ 
+    }
+
+	define view ItemView as
+        select from Items
+        {
+             
+            PRODUCT,
+            CURRENCY,
+            GROSSAMOUNT,
+            NETAMOUNT,
+            TAXAMOUNT,
+            QUANTITY,
+            QUANTITYUNIT 
+            
+        };
+};

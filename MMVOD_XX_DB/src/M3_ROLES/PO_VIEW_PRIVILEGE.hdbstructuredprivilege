@@ -1,0 +1,5 @@
+STRUCTURED PRIVILEGE
+       "PO_VIEW_PRIVILEGE_VOD"
+       FOR SELECT ON
+       "PurchaseOrder_View"
+       WHERE "CurrencyCode" = 'EUR'
