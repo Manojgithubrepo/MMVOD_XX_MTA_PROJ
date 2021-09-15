@@ -1,10 +1,9 @@
-column table "POHeader" 
+column table "POHeader_TEST" 
 (
 	EBELN   NVARCHAR(10) COMMENT 'purchase order',
 	EBELP   NVARCHAR(6),
 	AMT     DECIMAL(15,2),
 	WAERK   NVARCHAR(5),
-	Gross   NVARCHAR(5),
    PRIMARY KEY ("EBELN")
 	
 )
